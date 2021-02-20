@@ -1,12 +1,12 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京东手机年终奖
+name: 美丽研究院
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8,14 * * *'
+    - cron: '17 23,4,11 * * *'
   watch:
     types: started
   repository_dispatch:
@@ -28,16 +28,15 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
         run: |
           npm install
-      - name: '运行 【京东手机年终奖】'
+      - name: '运行 【美丽研究院】'
         run: |
-          node jd_festival.js
+          node jd_beauty.js
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_JX_COOKIE: ${{ secrets.JD_JX_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          JOY_HELP_FEED: ${{ secrets.JOY_HELP_FEED }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
