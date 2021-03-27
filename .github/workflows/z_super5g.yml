@@ -1,14 +1,14 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京东炸年兽小程序🧨
+name: 5G超级盲盒
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '50 8 * * *'
+    - cron: '5 1,6,11,16,21 * 3-4 *'
   watch:
-    types: [ started ]
+    types: started
   repository_dispatch:
     types: jd_scripts
 jobs:
@@ -32,13 +32,14 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【京东炸年兽小程序🧨】'
+      - name: '运行 【5G超级盲盒】'
         run: |
-          node  jd_nian_wechat.js 
+          
+          node z_super5g.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          PETSHARECODES: ${{ secrets.PETSHARECODES }}
+          MARKET_COIN_TO_BEANS: ${{ secrets.MARKET_COIN_TO_BEANS }}
+          MARKET_REWARD_NOTIFY: ${{ secrets.MARKET_REWARD_NOTIFY }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          PET_NOTIFY_CONTROL: ${{ secrets.PET_NOTIFY_CONTROL }}

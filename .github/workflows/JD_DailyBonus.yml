@@ -1,12 +1,12 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 直播间红包雨
+name: 京东多合一签到脚本
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,1 11-13/1 * * *' # UTC+8 17点15
+    - cron: '0 16 * * *' # 每天7点10分
   watch:
     types: started
   repository_dispatch:
@@ -32,10 +32,10 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【直播间红包雨】'
+      - name: '运行 【京东多合一签到脚本】'
         run: |
-          node jd_live_redrain2.js
+          node JD_DailyBonus.js
         env:
-          XM_LOGIN_TOKEN: ${{ secrets.XM_LOGIN_TOKEN }}
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
