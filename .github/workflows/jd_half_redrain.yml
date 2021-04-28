@@ -1,12 +1,12 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 手机尚学季
+name: 半点京豆雨
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '30 20-23/1 * * * '
   watch:
     types: started
   repository_dispatch:
@@ -32,12 +32,9 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【手机尚学季】'
+      - name: '运行 【半点京豆雨】'
         run: |
-          node jd_xtg.js
+          node jd_half_redrain.js 
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
-          JD_DEBUG: ${{ secrets.JD_DEBUG }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          JD_818_SHAREID_NOTIFY: ${{ secrets.JD_818_SHAREID_NOTIFY }}
