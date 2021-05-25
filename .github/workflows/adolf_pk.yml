@@ -1,12 +1,12 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 5G超级盲盒
+name: 京享值PK
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 1,6,11,16,21 * 3-4 *'
+    - cron: '10 16,10 * * *'
   watch:
     types: started
   repository_dispatch:
@@ -32,14 +32,12 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【5G超级盲盒】'
+      - name: '运行 【京享值PK】'
         run: |
-          
-          node z_super5g.js
+          node adolf_pk.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          MARKET_COIN_TO_BEANS: ${{ secrets.MARKET_COIN_TO_BEANS }}
-          MARKET_REWARD_NOTIFY: ${{ secrets.MARKET_REWARD_NOTIFY }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          JD_818_SHAREID_NOTIFY: ${{ secrets.JD_818_SHAREID_NOTIFY }}
