@@ -1,8 +1,20 @@
 /*
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
-搬运cui521大佬脚本，请勿外传！！！
+============Quantumultx===============
+[task_local]
+#店铺签到
+0 0 * * * https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.js, tag=店铺签到, enabled=true
+===========Loon============
+[Script]
+cron "0 0 * * *" script-path=https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.js,tag=店铺签到
+============Surge=============
+店铺签到 = type=cron,cronexp="0 0 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.js
+===========小火箭========
+店铺签到 = type=cron,script-path=https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.jss, cronexpr="0 0 * * *", timeout=3600, enable=true
 */
-const $ = new Env('店铺签到');
+
+
+const $ = new Env('最后一次更新了明天换新脚本 token将从群内获取 不在的可以删掉了');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -16,26 +28,17 @@ let vender=''
 let num=0
 let shopname=''
 const token=[
-  
-  
-'0090028FA0FA20D0F61E80B360F5FE21',
-'02181CBFD64BDEB737DA10CE4EC73426',
-'181F0D14CD47C727962974A4EBC63206',
-'337E8731A2F9116BAA193FF23A1C377B',//2.
-'3754B9A3985AC58B8845601D12E2186B',
-'3754B9A3985AC58B8845601D12E2186B',
-'40250D5CA34C32C45CE7C89B9628B59C',
-'4D03AD91B666A22112A8907AE843A2AC',
-'8C7DA9DF294D17E15A4D125CC6C89040',//11.
-'99F7B6DC7E3F42C67B0F3BA4C236D085',
-'A003F5734F1000D21EFC36A82126963C',//17
-'BE496934395BE8CE9B57ECC6F91454B6',
-'D0B40CECAE6F7A56233AEF8941BF41F2',
-'DC78E18101F3E8CABC9941EC53FC7A32',
-'EB1B18EF4CE3D6949A2A494C30EFB808',
-'F7592A0CD9244ABDBA61D19BBBA53EB8',//12.
-
-
+   "1A5BE7E4CFC35C680AE3960B48FE0851",//7天50豆5.14 5000份7天5元红包 200份5.14
+   "B098DF6C17F03C352F1C1B317867699A",//7天66京豆 100份5.14
+   "EB1B18EF4CE3D6949A2A494C30EFB808",//每天5/5天50豆 100份5.14
+   "1145B88683B3CD8BDA4FE73C80A6A59F",//7天50豆 1000份5.14
+   "7748434FF2C60283F785ECEEC659DF89",//每天5/80豆5.15/100豆5.20
+   "528843D9422F582C4140AC99E6EE53FA",//5天100豆5.15
+   "B46693DBDACBFF26BB7CBF05D8DE5F57",//10天50豆5.16 100份
+   "6E25CBDECF72199B46197E02AD4E9740",//28天5元5.20
+   "1145B88683B3CD8BDA4FE73C80A6A59F",//7天100豆 100份5.15
+   "DAA6B51C25AE4AFB3808144C0BC5C2D1",//7天100豆5.17
+   "160FD7FBAC172C8E486C1C5AFFA3F546",//10天100京豆 100份5.11
 ]
 //IOS等用户直接用NobyDa的jd cookie
 
@@ -78,7 +81,7 @@ if ($.isNode()) {
         continue
       }
       await dpqd()
-      if(i  <1 ) {await showMsg()}
+      await showMsg()
     }
   }
 })()
@@ -187,7 +190,7 @@ function getActivityInfo(token,venderId) {
         "accept-encoding": "gzip, deflate",
         "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "cookie": cookie,
-         "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16178634353215523301&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_2009753434_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
+        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16105853541009626903&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1001280291_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
         "User-Agent": `Mozilla/5.0 (Linux; U; Android 10; zh-cn; MI 8 Build/QKQ1.190828.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3945.147 Mobile Safari/537.36 XiaoMi/MiuiBrowser/13.5.40`
       }
     }
@@ -230,7 +233,7 @@ function signCollectGift(token,venderId,activitytemp) {
         "accept-encoding": "gzip, deflate",
         "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "cookie": cookie,
-        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16178634353215523301&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_2009753434_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
+        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16105853541009626903&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1001280291_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
         "User-Agent": `Mozilla/5.0 (Linux; U; Android 10; zh-cn; MI 8 Build/QKQ1.190828.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3945.147 Mobile Safari/537.36 XiaoMi/MiuiBrowser/13.5.40`
       }
     }
@@ -320,7 +323,7 @@ function TotalBean() {
               $.isLogin = false; //cookie过期
               return
             }
-            $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
+            $.nickName = data['base'].nickname;
           } else {
             console.log(`京东服务器返回空数据`)
           }
