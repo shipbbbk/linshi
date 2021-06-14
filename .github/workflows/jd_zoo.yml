@@ -27,6 +27,7 @@ jobs:
      - name: '动物联萌'
        run: |
           node jd_zoo.js
+          node jd_zooCollect.js
           
        env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
